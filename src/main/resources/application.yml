@@ -1,0 +1,20 @@
+camunda.bpm.client:
+  base-url: http://localhost:8080/engine-rest # the URL pointing to the Camunda Platform Runtime REST API
+  worker-id: SendEmailWorker1
+  lock-duration: 5000 # defines how many milliseconds the External Tasks are locked until they can be fetched again
+  subscriptions:
+    sendEmail: # topic name of the External Service Task
+      variable-names: [emailContent] # our business logic doesn't require any variables, so don't fetch them
+      #process-definition-key: SendEmailProcess # only filter for External Tasks with this process definition key
+
+logging.level.org.camunda.bpm.client: DEBUG # increase the log level of the application
+
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: myworker@gmail.com
+    password: zfghhjasdljqwqdk
+    properties.mail.smtp.auth: true
+    properties.mail.smtp.starttls.enable: true
+    properties.mail.debug: true
